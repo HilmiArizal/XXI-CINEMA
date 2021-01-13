@@ -1,0 +1,18 @@
+.card-bestmovie-home{
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+.title-bestmovie-home{
+    text-align: center;
+    background-color: #006563;
+    color: #ffffff;
+    padding: 5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+#btn-seemore-movie{
+    background-color: rgb(43, 40, 40);
+    color: #ffffff;
+}

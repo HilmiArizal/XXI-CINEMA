@@ -1,0 +1,55 @@
+.card-manage-movies {
+    padding: 2em;
+    height: 100vh;
+}
+
+.title-manage-movies {
+    text-align: center;
+    font-size: 200%;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.form-manage-movies {
+    padding: 2em;
+}
+
+.arrowback-manage-movies{
+    position: absolute;
+    font-size: 200%;
+    padding-left: 1em;
+    cursor: pointer;
+}
+
+.no-img {
+    width: 200px;
+    display: flex;
+    margin: auto;
+}
+
+.file-manage-movies {
+    font-size: 80%;
+    margin: 1% auto;
+    display: flex;
+}
+
+#btn-manage-movies{
+    background-color: #187bfc;
+    letter-spacing: 1px;
+}
+
+.form-group label{
+    font-weight: bold;
+}
+
+.add-input-casts{
+    cursor: pointer;
+    border-radius: 2px;
+    color: black;
+    padding: 5px;
+}
+
+.input-add{
+    display: flex;
+    flex-direction: column;
+}

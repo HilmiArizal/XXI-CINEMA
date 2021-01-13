@@ -1,0 +1,72 @@
+.card-detail-movie {
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.section-detail-movie {
+    display: flex;
+}
+
+.left-section-detail-movie {
+    width: 30%;
+}
+
+.left-section-detail-movie img {
+    width: 100%;
+}
+
+.right-section-detail-movie {
+    width: 80%;
+    padding-left: 1em;
+}
+
+.right-section-detail-movie label {
+    width: 15%;
+}
+
+.title-detail-movie {
+    color: #006563;
+    font-weight: 500;
+    font-size: 150%;
+    margin-bottom: 5%;
+}
+
+.section-playing {
+    margin: 5% auto;
+}
+
+.section-playing hr {
+    border: 0px solid rgb(58, 58, 58);
+}
+
+.btn-buy-movie {
+    background-color: rgb(250, 236, 40);
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#btn-choose-detailmovie {
+    background-color: #006563;
+    color: #ffffff;
+}
+
+.card-comment-movie {
+    width: 100%;
+    border: 1px solid rgb(163, 163, 163);
+    padding: 1%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    border-radius: 3px;
+}
+
+.delete-comment-movie {
+    float: right;
+    cursor: pointer;
+}
+
+.delete-comment-movie:hover {
+    transition: 0.3s;
+    opacity: 0.6;
+}

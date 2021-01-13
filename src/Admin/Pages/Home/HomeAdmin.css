@@ -1,0 +1,11 @@
+.card-home-admin{
+    height: 100vh;
+    padding: 2em;
+}
+
+.title-home-admin{
+    text-align: center;
+    font-size: 200%;
+    letter-spacing: 1px;
+    font-weight: bold;
+}

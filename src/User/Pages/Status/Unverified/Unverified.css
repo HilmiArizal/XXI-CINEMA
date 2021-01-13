@@ -1,0 +1,17 @@
+#btn-action-unverified{
+    background-color: #006563;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+#btn-action-unverified:hover{
+    color: #ffffff;
+}
+
+.loading-gif{
+    width: 2%;
+}
+
+.success-img{
+    width: 10%;
+}

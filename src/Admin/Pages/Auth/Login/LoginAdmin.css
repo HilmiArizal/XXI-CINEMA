@@ -1,0 +1,36 @@
+.title-form-login-admin{
+    text-align: center;
+    font-size: 150%;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #006563;
+}
+
+.input-form-login-admin{
+    width: 60%;
+    margin: 2% auto;
+    font-size: 80%;
+    color: #006563;
+}
+
+#btn-form-login-admin{
+    width: 60%;
+    margin: 5% auto;
+    justify-content: center;
+    display: flex;
+    background-color: #006563;
+    border: none;
+    letter-spacing: 1px;
+}
+
+.login-password {
+    float: right;
+    margin-top: -20px;
+    cursor: pointer;
+}
+
+@media (min-width: 300px) and (max-width: 700px) {
+    .card-login{
+        width: 80%;
+    }
+}

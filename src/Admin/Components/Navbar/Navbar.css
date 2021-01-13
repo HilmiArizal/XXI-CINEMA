@@ -1,0 +1,91 @@
+.body-admin{
+    display: flex;
+}
+
+.left-side{
+    width: 15%;
+}
+
+.right-side{
+    width: 85%;
+}
+
+.img-profile-admin{
+    width: 50%;
+    margin: 10% auto;
+    display: flex;
+    border-radius: 100%;
+    height: 15vh;
+}
+
+#link-sidenav{
+    text-decoration: none;
+    padding: 10px;
+}
+
+#link-sidenav:hover{
+    background-color: rgb(204, 204, 204);
+    color: rgb(34, 34, 34);
+}
+
+.sidenav-admin{
+    display: flex;
+}
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 15%;
+    background-color: #187bfc;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+    transition: 0.3s;
+
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}

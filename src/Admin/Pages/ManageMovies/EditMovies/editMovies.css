@@ -1,0 +1,23 @@
+.section-edit-movies{
+    margin-top: 5%;
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+}
+
+.title-edit-movies{
+    font-size: 120%;
+    font-weight: bold;
+    display: flex;
+}
+
+.title-edit-movies label{
+    width: 15%;
+}
+
+.img-movies-file{
+    font-size: 80%;
+    display: flex;
+    margin: 2% auto;
+    width: 50%;
+}

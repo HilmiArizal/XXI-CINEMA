@@ -1,0 +1,81 @@
+#navbar {
+    background-color: #e4e4e4;
+    padding: 1em;
+}
+
+.img-navbar {
+    height: 80px;
+}
+
+#navbar-between {
+    padding: 10px;
+}
+
+#nav-link {
+    text-decoration: none;
+    color: #006563;
+    display: block;
+    transition: 0.5s;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 25px;
+    cursor: pointer;
+}
+
+#nav-link:hover {
+    text-decoration: none;
+    opacity: 0.6;
+    color: rgb(216, 159, 52);
+    transition: 0.5s;
+}
+
+#my-form{
+    justify-content: center;
+}
+
+.logo-img-nav {
+    margin-left: 20px;
+}
+
+.hr-vertical {
+    border-left: 1px solid rgb(189, 189, 189);
+    height: 50px;
+    position: absolute;
+    right: 40%;
+}
+
+#dropdown-item{
+    font-size: 90%;
+    color: #006563;
+    transition: 0.3s;
+}
+
+#dropdown-item:hover{
+    background-color: #006563;
+    transition: 0.3s;
+    color: #ffffff;
+}
+
+.account-nav{
+    width: 20%;
+}
+
+#link-account-nav{
+    color: #006563;
+    text-decoration: none;
+    width: 100%;
+}
+
+@media (min-width: 300px) and (max-width: 700px) {
+    .hr-vertical {
+       display: none;
+    }
+}
+
+@media (min-width: 701px) and (max-width: 1200px) {
+    .hr-vertical {
+       display: none;
+    }
+}
