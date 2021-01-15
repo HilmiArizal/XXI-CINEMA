@@ -7,15 +7,10 @@ export const getMovies = () => {
     return async (dispatch) => {
         try {
             const res = await Axios.get(API_URL + `movies/getMovies`);
-            dispatch({
-                type: 'DATA_MOVIES_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_MOVIES_SUCCESS', payload: res.data })
+            console.log(res.data)
         } catch (err) {
-            console.log(err)
-            dispatch({
-                type: 'DATA_MOVIES_FAIL'
-            })
+            dispatch({ type: 'DATA_MOVIES_FAIL' })
         }
     }
 }
@@ -24,12 +19,10 @@ export const getMoviesById = (idmovies) => {
     return async (dispatch) => {
         try {
             const res = await Axios.get(API_URL + `movies/getMoviesById?idmovies=${idmovies}`)
-            dispatch({
-                type: 'DATA_MOVIESBYID_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_MOVIESBYID_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
+            // dispatch({ type: 'DATA_MOVIES_FAIL' })
         }
     }
 }
@@ -38,12 +31,35 @@ export const getBestMovies = () => {
     return async (dispatch) => {
         try {
             const res = await Axios.get(API_URL + `movies/getBestMovies`)
-            dispatch({
-                type: 'DATA_BESTMOVIES_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_BESTMOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
+            // dispatch({ type: 'DATA_MOVIES_FAIL' })
+        }
+    }
+}
+
+export const getMoviesUpComing = () => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios.get(API_URL + `movies/getMoviesUpComing`)
+            dispatch({ type: 'DATA_MOVIESUPCOMING_SUCCESS', payload: res.data })
+        } catch (err) {
+            // console.log(err)
+            // dispatch({ type: 'DATA_MOVIES_FAIL' })
+        }
+    }
+}
+
+export const getMoviesNowPlaying = () => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios.get(API_URL + `movies/getMoviesNowPlaying`)
+            dispatch({ type: 'DATA_MOVIESNOWPLAYING_SUCCESS', payload: res.data })
+            console.log(res.data)
+        } catch (err) {
+            // console.log(err)
+            // dispatch({ type: 'DATA_MOVIES_FAIL' })
         }
     }
 }
@@ -52,33 +68,26 @@ export const addMovies = (dataMovies, imageMovies) => {
     return async (dispatch) => {
         try {
             let formData = new FormData();
-
             formData.append('dataMovies', JSON.stringify(dataMovies))
             formData.append('imageMovies', (imageMovies))
 
             await Axios.post(API_URL + `movies/addMovies`, formData)
-            const res = await Axios.get(API_URL + `movies/getMovies`);
-            dispatch({
-                type: 'DATA_MOVIES_SUCCESS',
-                payload: res.data
-            })
+            const res = await Axios.get(API_URL + `movies/getMovies`)
+            dispatch({ type: 'DATA_MOVIES_SUCCESS', payload: res.data })
+
             Swal.fire({
                 icon: 'success',
                 timer: 1000,
                 showConfirmButton: false
             })
-            dispatch({
-                type: 'REDIRECT_MOVIES',
-                payload: true
-            })
+
+            dispatch({ type: 'REDIRECT_MOVIES', payload: true })
+
             setTimeout(() => {
-                dispatch({
-                    type: 'REDIRECT_MOVIES',
-                    payload: false
-                })
+                dispatch({ type: 'REDIRECT_MOVIES', payload: false })
             }, 1000);
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -88,12 +97,9 @@ export const deleteMovies = (idmovies) => {
         try {
             await Axios.delete(API_URL + `movies/deleteMovies?idmovies=${idmovies}`)
             const res = await Axios.get(API_URL + `movies/getMovies`);
-            dispatch({
-                type: 'DATA_MOVIES_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_MOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -102,34 +108,27 @@ export const editMovies = (idmovies, dataMovies, imagemovies) => {
     return async (dispatch) => {
         try {
             let formData = new FormData();
-
             formData.append('dataMovies', JSON.stringify(dataMovies))
             formData.append('imagemovies', (imagemovies))
 
             await Axios.patch(API_URL + `movies/editMovies?idmovies=${idmovies}`, formData)
             const res = await Axios.get(API_URL + `movies/getMoviesById?idmovies=${idmovies}`);
-            dispatch({
-                type: 'DATA_MOVIESBYID_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_MOVIESBYID_SUCCESS', payload: res.data })
+
             Swal.fire({
                 icon: 'success',
                 position: 'center',
                 timer: 1000,
                 showConfirmButton: false
             })
-            dispatch({
-                type: 'REDIRECT_MOVIES',
-                payload: true
-            })
+
+            dispatch({ type: 'REDIRECT_MOVIES', payload: true })
+
             setTimeout(() => {
-                dispatch({
-                    type: 'REDIRECT_MOVIES',
-                    payload: false
-                })
+                dispatch({ type: 'REDIRECT_MOVIES', payload: false })
             }, 1000);
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -149,12 +148,9 @@ export const addLikeMovie = (dataLike) => {
                 dispatch({ type: 'DATA_LIKEMOVIES_SUCCESS', payload: res.data })
             }
             const res = await Axios.get(API_URL + `movies/getMovies`);
-            dispatch({
-                type: 'DATA_MOVIES_SUCCESS',
-                payload: res.data
-            })
+            dispatch({ type: 'DATA_MOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -173,7 +169,7 @@ export const getLikeMovie = () => {
                 dispatch({ type: 'DATA_LIKEMOVIES_SUCCESS', payload: res.data })
             }
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -195,7 +191,7 @@ export const editLikeMovie = (idlikemovie, dataMovie) => {
             const res = await Axios.get(API_URL + `movies/getMovies`);
             dispatch({ type: 'DATA_MOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -208,7 +204,7 @@ export const addCommentMovie = (dataComment, movieId) => {
             const res = await Axios.get(API_URL + `movies/getCommentMovie?idmovies=${movieId}`)
             dispatch({ type: 'DATA_COMMENTMOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -219,7 +215,7 @@ export const getCommentMovie = (idmovies) => {
             const res = await Axios.get(API_URL + `movies/getCommentMovie?idmovies=${idmovies}`)
             dispatch({ type: 'DATA_COMMENTMOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
         }
     }
 }
@@ -231,7 +227,18 @@ export const deleteCommentMovie = (idcommentmovie, movieId) => {
             const res = await Axios.get(API_URL + `movies/getCommentMovie?idmovies=${movieId}`)
             dispatch({ type: 'DATA_COMMENTMOVIES_SUCCESS', payload: res.data })
         } catch (err) {
-            console.log(err)
+            // console.log(err)
+        }
+    }
+}
+
+export const get3CommentMovie = (idmovies) => {
+    return async (dispatch) => {
+        try {
+            const res = await Axios.get(API_URL + `movies/get3CommentMovie?idmovies=${idmovies}`)
+            dispatch({ type: 'DATA_3COMMENTMOVIES_SUCCESS', payload: res.data })
+        } catch (err) {
+            // console.log(err)
         }
     }
 }

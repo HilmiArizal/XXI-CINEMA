@@ -70,3 +70,9 @@
     transition: 0.3s;
     opacity: 0.6;
 }
+
+.category-movie{
+    float: right;
+    text-align: center;
+    margin-top: 1%;
+}

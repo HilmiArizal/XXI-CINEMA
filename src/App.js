@@ -16,8 +16,9 @@ import ProfileAdmin from './Admin/Pages/Profile/ProfileAdmin';
 import ManageMovies from './Admin/Pages/ManageMovies/Movies/movies';
 import addMovies from './Admin/Pages/ManageMovies/AddMovies/addMovies';
 import editMovies from './Admin/Pages/ManageMovies/EditMovies/editMovies';
-import NowPlaying from './User/Pages/Movie/NowPlaying';
+import NowPlaying from './User/Pages/NowPlaying/NowPlaying';
 import DetailMovie from './User/Pages/DetailMovie/DetailMovie';
+import UpComing from './User/Pages/UpComing/UpComing';
 
 
 class App extends Component {
@@ -57,6 +58,7 @@ class App extends Component {
             <Route path="/verified" component={Verified} />
             <Route path="/nowplaying" component={NowPlaying} />
             <Route path="/detailmovie" component={DetailMovie} />
+            <Route path="/upcoming" component={UpComing} />
           </div>
         )
       } else {
@@ -70,6 +72,7 @@ class App extends Component {
             <Route path="/changePassword" component={ChangePassword} />
             <Route path="/nowplaying" component={NowPlaying} />
             <Route path="/detailmovie" component={DetailMovie} />
+            <Route path="/upcoming" component={UpComing} />
           </div>
         )
       }
@@ -83,6 +86,7 @@ class App extends Component {
           <Route path="/register" component={Register} />
           <Route path="/nowplaying" component={NowPlaying} />
           <Route path="/detailmovie" component={DetailMovie} />
+          <Route path="/upcoming" component={UpComing} />
         </div>
       )
     }

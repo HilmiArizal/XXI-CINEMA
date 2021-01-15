@@ -1,0 +1,15 @@
+.title-upcoming-movie {
+    text-align: center;
+    background-color: #971c30;
+    color: #ffffff;
+    padding: 5px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+#btn-upcoming-movie{
+    width: 100%;
+    background-color: #971c30;
+    color: #ffffff;
+}
+

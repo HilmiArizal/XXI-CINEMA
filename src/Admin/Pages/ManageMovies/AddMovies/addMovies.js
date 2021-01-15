@@ -12,6 +12,8 @@ class AddMovies extends Component {
 
     state = {
         showStep1: false,
+        showStep2: false,
+
         changeInput: false,
         input: [],
 
@@ -35,6 +37,8 @@ class AddMovies extends Component {
         producer: '',
         director: '',
         writter: '',
+        playing:'',
+        category:'',
 
         showValidate: false
     }
@@ -122,8 +126,10 @@ class AddMovies extends Component {
         let producer = this.state.producer;
         let director = this.state.director;
         let writter = this.state.writter;
+        let playing = this.state.playing;
+        let category = this.state.category;
         let dataMovies = {
-            title, duration: parseInt(duration), genre, synopsis, casts, producer, director, writter
+            title, duration: parseInt(duration), genre, synopsis, casts, producer, director, writter, playing, category
         }
         if (title && duration && genre && synopsis && casts && producer && director && writter) {
             this.props.addMovies(dataMovies, imageMovies);
@@ -133,7 +139,7 @@ class AddMovies extends Component {
     }
 
     render() {
-        const { casts0, casts1, casts2, casts3, title, duration, genre, synopsis, casts, producer, director, writter } = this.state;
+        const { casts0, casts1, casts2, casts3 } = this.state;
         if (this.props.redirectMovies) {
             return (
                 <Redirect to="/managemovies"></Redirect>
@@ -166,6 +172,7 @@ class AddMovies extends Component {
                             <input type="file" className="file-manage-movies" onChange={this.onChangeImg} />
                         </div>
                         <h3 style={{ color: 'red' }}>{this.state.showValidate ? this.state.errorStep1 : ''}</h3>
+                        <br/>
                         {
                             this.state.showStep1
                                 ?
@@ -217,6 +224,23 @@ class AddMovies extends Component {
                                         <label>Writter</label><div style={{ marginRight: '1%' }}>:</div>
                                         <input style={this.state.showValidate ? { borderColor: this.state.writter ? null : 'red' } : null} type="text" className="form-control form-control-sm" value={this.state.writter} placeholder="Writter our movies ?" onChange={(e) => this.setState({ writter: e.target.value })} />
                                     </div>
+                                    <div className="title-edit-movies">
+                                        <label>Playing</label><div style={{ marginRight: '1%' }}>:</div>
+                                        <select style={this.state.showValidate ? { borderColor: this.state.playing ? null : 'red' } : null} className="form-select form-control-sm" onChange={(e) => this.setState({ playing: e.target.value })}>
+                                            <option hidden disabled selected>{!this.state.playing ? 'Playing our movies ?' : this.state.playing}</option>
+                                            <option>Now Playing</option>
+                                            <option>Up Coming</option>
+                                        </select>
+                                    </div>
+                                    <div className="title-edit-movies">
+                                        <label>Category</label><div style={{ marginRight: '1%' }}>:</div>
+                                        <select style={this.state.showValidate ? { borderColor: this.state.category ? null : 'red' } : null} className="form-select form-control-sm" onChange={(e) => this.setState({ category: e.target.value })}>
+                                            <option hidden disabled selected>{!this.state.category ? 'Category our movies ?' : this.state.category}</option>
+                                            <option>All Ages</option>
+                                            <option>Adult (17+)</option>
+                                            <option>Teenager (13+)</option>
+                                        </select>
+                                    </div>
                                     <hr />
                                     <center>
                                         <button style={{ marginRight: '1%' }} className="btn btn-primary btn-sm" id="btn-manage-movies" onClick={(e) => e.preventDefault() + this.setState({ showStep1: false })}>BACK</button>
@@ -225,7 +249,6 @@ class AddMovies extends Component {
                                 </div>
                                 :
                                 <div>
-                                    <br />
                                     <div className="title-edit-movies">
                                         <label>Title</label><div style={{ marginRight: '1%' }}>:</div>
                                         <input style={this.state.showValidate ? { borderColor: this.state.title ? null : 'red' } : null} type="text" className="form-control form-control-sm" value={this.state.title} placeholder="Title our movies ?" onChange={(e) => this.setState({ title: e.target.value })} />
@@ -236,7 +259,7 @@ class AddMovies extends Component {
                                     </div>
                                     <div className="title-edit-movies">
                                         <label>Genre</label><div style={{ marginRight: '1%' }}>:</div>
-                                        <select style={this.state.showValidate ? { borderColor: this.state.genre ? null : 'red' } : null} className="form-control form-control-sm" onChange={(e) => this.setState({ genre: e.target.value })}>
+                                        <select style={this.state.showValidate ? { borderColor: this.state.genre ? null : 'red' } : null} className="form-select form-control-sm" onChange={(e) => this.setState({ genre: e.target.value })}>
                                             <option hidden disabled selected>{!this.state.genre ? 'Genre our movies ?' : this.state.genre}</option>
                                             <option>Action</option>
                                             <option>Comedy</option>

@@ -22,6 +22,8 @@ class EditMovies extends Component {
         producer: '',
         director: '',
         writter: '',
+        playing: '',
+        category: ''
 
     }
 
@@ -53,8 +55,11 @@ class EditMovies extends Component {
             let producer = !this.state.producer ? item.producer : this.state.producer;
             let director = !this.state.director ? item.director : this.state.director;
             let writter = !this.state.writter ? item.writter : this.state.writter;
-            let dataMovies = { title, duration: parseInt(duration), genre, synopsis, casts, producer, director, writter, changeImage };
+            let playing = !this.state.playing ? item.playing : this.state.playing;
+            let category = !this.state.category ? item.category : this.state.category;
+            let dataMovies = { title, duration: parseInt(duration), genre, synopsis, casts, producer, director, writter, playing, category, changeImage };
             let redirectMovies = this.state.redirectMovies;
+            console.log(dataMovies)
             this.props.editMovies(idmovies, dataMovies, imagemovies, redirectMovies)
         })
     }
@@ -72,7 +77,7 @@ class EditMovies extends Component {
                                 <img src={API_URL + item.imagemovies} alt="img-movies" />
                         }
                         <div>
-                            <input type="file" onChange={this.onChangeImage} className="img-movies-file"  />
+                            <input type="file" onChange={this.onChangeImage} className="img-movies-file" />
                         </div>
                     </div>
                     <div className="container">
@@ -86,7 +91,7 @@ class EditMovies extends Component {
                         </div>
                         <div className="title-edit-movies" onChange={(e) => this.setState({ genre: e.target.value })}>
                             <label>Genre</label><div style={{ marginRight: '1%' }}>:</div>
-                            <select className="form-control form-control-sm">
+                            <select className="form-select form-control-sm">
                                 <option disabled selected hidden>{item.genre}</option>
                                 <option>Action</option>
                                 <option>Comedy</option>
@@ -128,7 +133,24 @@ class EditMovies extends Component {
                             <label>Writter</label><div style={{ marginRight: '1%' }}>:</div>
                             <input type="text" defaultValue={item.writter} className="form-control form-control-sm" onChange={(e) => this.setState({ writter: e.target.value })} />
                         </div>
-                        <hr/>
+                        <div className="title-edit-movies" onChange={(e) => this.setState({ playing: e.target.value })}>
+                            <label>Playing</label><div style={{ marginRight: '1%' }}>:</div>
+                            <select className="form-select form-control-sm">
+                                <option hidden disabled selected>{item.playing}</option>
+                                <option>Now Playing</option>
+                                <option>Up Coming</option>
+                            </select>
+                        </div>
+                        <div className="title-edit-movies" onChange={(e) => this.setState({ category: e.target.value })}>
+                            <label>Category</label><div style={{ marginRight: '1%' }}>:</div>
+                            <select className="form-select form-control-sm">
+                                <option hidden disabled selected>{item.category}</option>
+                                <option>All Ages</option>
+                                <option>Adult (17+)</option>
+                                <option>Teenager (13+)</option>
+                            </select>
+                        </div>
+                        <hr />
                         <center>
                             <div className="btn btn-primary btn-sm custom-edit-movies" onClick={this.onBtnEditMovies}>SUBMIT</div>
                         </center>
@@ -139,7 +161,7 @@ class EditMovies extends Component {
     }
 
     render() {
-        if(this.props.redirectMovies){
+        if (this.props.redirectMovies) {
             return (
                 <Redirect to="managemovies"></Redirect>
             )

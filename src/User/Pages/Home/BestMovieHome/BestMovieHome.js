@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { API_URL } from '../../../../Helpers';
 import { getBestMovies } from '../../../../Redux/Action';
 import './BestMovieHome.css';
+import Adult from '../../../Assets/Images/Adult.png';
+import Teenager from '../../../Assets/Images/Teenager.png';
+import Allages from '../../../Assets/Images/Allages.png';
 
 
 class BestMovieHome extends Component {
@@ -18,7 +21,7 @@ class BestMovieHome extends Component {
     render() {
         return (
             <div>
-                <div className="title-bestmovie-home">NOW PLAYING</div>
+                <div className="title-bestmovie-home">THE BEST MOVIE THIS WEEK</div>
                 <div className="card-bestmovie-home">
                     <MDBContainer>
                         <MDBRow>
@@ -29,7 +32,16 @@ class BestMovieHome extends Component {
                                             <MDBCard style={{ width: '18rem', border: 'none', padding: '18px', margin: 'auto' }}>
                                                 <img src={API_URL + item.imagemovies} alt="img-movie" className="img-movie" />
                                                 <div className="title-movie">{item.title}</div>
-                                                <MDBBtn size="sm" id="btn-choose-movie">Choose</MDBBtn>
+                                                <div className="text-center">
+                                                    {item.category === 'All Ages' ?
+                                                        <img src={Allages} alt="img-category" /> :
+                                                        item.category === 'Adult (17+)' ?
+                                                            <img src={Adult} alt="img-category" /> :
+                                                            item.category === 'Teenager (13+)' ?
+                                                                <img src={Teenager} alt="img-category" /> :
+                                                                ''
+                                                    }
+                                                </div>
                                             </MDBCard>
                                         </Link>
                                     </MDBCol>
@@ -39,7 +51,7 @@ class BestMovieHome extends Component {
                     </MDBContainer>
                     <center>
                         <Link to="nowplaying">
-                            <MDBBtn size="sm" id="btn-seemore-movie">See More ...</MDBBtn>
+                            <MDBBtn size="sm" id="btn-seemore-movie">See More Movie ...</MDBBtn>
                         </Link>
                     </center>
                 </div>

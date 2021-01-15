@@ -1,10 +1,14 @@
-import { MDBBtn, MDBContainer, MDBIcon } from 'mdbreact';
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { API_URL } from '../../../Helpers';
 import { getMoviesById, getCommentMovie, addCommentMovie, deleteCommentMovie } from '../../../Redux/Action';
+import { MDBBtn, MDBContainer, MDBIcon } from 'mdbreact';
 import './DetailMovie.css';
 import $ from 'jquery';
+import Adult from '../../Assets/Images/Adult.png';
+import Teenager from '../../Assets/Images/Teenager.png';
+import Allages from '../../Assets/Images/Allages.png';
 
 
 
@@ -20,6 +24,8 @@ class DetailMovie extends Component {
         this.props.getMoviesById(idmovies);
         this.props.getCommentMovie(idmovies);
         this.setState({ idmovies: idmovies })
+
+        window.scrollTo(0, 0);
     }
 
     onBtnComment = (e) => {
@@ -42,6 +48,34 @@ class DetailMovie extends Component {
         this.props.deleteCommentMovie(idcommentmovie, movieId);
     }
 
+    renderCategory = () => {
+        return this.props.dataMoviesById.map((item, index) => {
+            if (item.category === 'All Ages') {
+                return (
+                    <div className="category-movie">
+                        {item.duration} Minutes<br /><img src={Allages} alt="img-category" />
+                    </div>
+                )
+            } else if (item.category === 'Adult (17+)') {
+                return (
+                    <div className="category-movie">
+                        {item.duration} Minutes<br /><img src={Adult} alt="img-category" />
+                    </div>
+                )
+            } else if (item.category === 'Teenager (13+)') {
+                return (
+                    <div className="category-movie">
+                        {item.duration} Minutes<br /><img src={Teenager} alt="img-category" />
+                    </div>
+                )
+            } else {
+                return (
+                    <></>
+                )
+            }
+        })
+    }
+
     render() {
         return (
             <div>
@@ -55,6 +89,9 @@ class DetailMovie extends Component {
                                         <div className="btn-buy-movie">BUY MOVIE</div>
                                     </div>
                                     <div className="right-section-detail-movie">
+                                        <MDBContainer>
+                                            {this.renderCategory()}
+                                        </MDBContainer>
                                         <div className="title-detail-movie">{item.title}</div>
                                         <div>
                                             <label>Genre</label> : {item.genre}
@@ -89,34 +126,47 @@ class DetailMovie extends Component {
                                 </div>
                                 <br />
                                 <div style={{ fontWeight: 'bold', fontSize: '120%' }}>They said about : {item.title} ? </div>
-                                {this.props.dataCommentMovies.map((item, index) => {
-                                    return (
-                                        <div className="card-comment-movie">
-                                            {
-                                                this.props.iduser === item.iduser ?
-                                                    <MDBContainer><div className="delete-comment-movie" onClick={() => this.onBtnDeleteComment(item.idcommentmovie)}><MDBIcon icon="trash-alt" /></div></MDBContainer> :
-                                                    ''
-                                            }
-                                            <label style={{ fontSize: '90%', fontWeight: 'bold' }}>{item.username}</label>
-                                            <div style={{ fontSize: '70%', fontStyle: 'italic' }}>{item.comment}</div>
-                                        </div>
-                                    )
-                                })}
+                                {
+                                    this.props.dataCommentMovies.length === 0
+                                        ?
+                                        <div>Haven't comment yet!</div>
+                                        :
+                                        this.props.dataCommentMovies.map((item, index) => {
+                                            return (
+                                                <div className="card-comment-movie">
+                                                    {
+                                                        this.props.iduser === item.iduser ?
+                                                            <MDBContainer><div className="delete-comment-movie" onClick={() => this.onBtnDeleteComment(item.idcommentmovie)}><MDBIcon icon="trash-alt" /></div></MDBContainer> :
+                                                            ''
+                                                    }
+                                                    <label style={{ fontSize: '90%', fontWeight: 'bold' }}>{item.username}</label>
+                                                    <div style={{ fontSize: '70%', fontStyle: 'italic' }}>{item.comment}</div>
+                                                </div>
+                                            )
+                                        })}
                                 <form id="comment-form">
-                                    <div className="input-group" style={{ marginTop: '2%', marginBottom: '2%' }}>
-                                        <div className="input-group-prepend">
-                                            <span className="input-group-text" id="basic-addon">
-                                                <i className="fas fa-pencil-alt prefix"></i>
-                                            </span>
-                                        </div>
-                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => this.setState({ commentMovies: e.target.value })}></textarea>
-                                    </div>
+                                    {this.props.iduser ?
+                                        <div className="input-group" style={{ marginTop: '2%', marginBottom: '2%' }}>
+                                            <div className="input-group-prepend">
+                                                <span className="input-group-text" id="basic-addon">
+                                                    <i className="fas fa-pencil-alt prefix"></i>
+                                                </span>
+                                            </div>
+                                            <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" onChange={(e) => this.setState({ commentMovies: e.target.value })}></textarea>
+                                        </div> : ''
+                                    }
                                     {
-                                        this.state.commentMovies
+                                        this.props.iduser
                                             ?
-                                            <MDBBtn size="sm" id="btn-choose-detailmovie" onClick={this.onBtnComment}>Comment Now !</MDBBtn>
+                                            this.state.commentMovies
+                                                ?
+                                                <MDBBtn size="sm" id="btn-choose-detailmovie" onClick={this.onBtnComment}>Comment Now !</MDBBtn>
+                                                :
+                                                <MDBBtn disabled size="sm" id="btn-choose-detailmovie" onClick={this.onBtnComment}>Comment Now !</MDBBtn>
                                             :
-                                            <MDBBtn disabled size="sm" id="btn-choose-detailmovie" onClick={this.onBtnComment}>Comment Now !</MDBBtn>
+                                            <Link to="login">
+                                                <MDBBtn size="sm" id="btn-choose-detailmovie" >Login !</MDBBtn>
+                                            </Link>
                                     }
                                 </form>
                             </div>
